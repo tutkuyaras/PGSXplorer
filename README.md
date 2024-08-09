@@ -14,13 +14,13 @@ PGSExplorer includes a comprehensive pipeline that begins with rigorous quality 
 **5. Filtering by Hardy-Weinberg Equilibrium (HWE):** Remove SNPs that deviate significantly from HWE.  
 **6. Visualization of HWE Distributions:** Visual display of HWE p-values for SNPs.  
 **7. Relatedness Checking:** Assess genetic relatedness between individuals.  
-**8. Visualization of Identity by Descent (IBD):** Visualize IBD statistics to identify related individuals.  
-**9. Heterozygosity Assessment:** Evaluate heterozygosity rates to identify potential outliers.
-**10. Visualization of Heterozygosity Distributions:** Plot distribution of heterozygosity rates.
-**11. Removal of Duplicate SNPs:** Eliminate duplicated SNPs to prevent redundancy.
-**12. Calculating 10 Principal Components (PCA):** Perform PCA to capture population structure.
-**13. Pruning and Thresholding (P+T):** Execute P+T method using PLINK to calculate PGS
-**14. PRSice-2:** Calculate and visualize PGS using PRSice-2.
-**15. LD-Pred2 :** Apply LD-Pred2 (grid and auto)  for PGS estimation.
-**16. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.
-**17. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.
+**8. Visualization of Identity by Descent (IBD):** Visualize IBD statistics to identify related individuals.    
+**9. Heterozygosity Assessment:** Evaluate heterozygosity rates to identify potential outliers.  
+**10. Visualization of Heterozygosity Distributions:** Plot distribution of heterozygosity rates.  
+**11. Removal of Duplicate SNPs:** Eliminate duplicated SNPs to prevent redundancy.  
+**12. Calculating 10 Principal Components (PCA):** Perform PCA to capture population structure.  
+**13. Pruning and Thresholding (P+T):** Execute P+T method using PLINK to calculate PGS.  
+**14. PRSice-2:** Calculate and visualize PGS using PRSice-2.  
+**15. LD-Pred2 :** Apply LD-Pred2 (grid and auto)  for PGS estimation.  
+**16. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.  
+**17. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.  
