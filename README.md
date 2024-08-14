@@ -2,7 +2,7 @@
 PGSExplorer is a bioinformatics workflow designed to calculate polygenic scores by processing genomic data through quality control steps. Optionally, it can utilize tools such as [PLINK](https://www.cog-genomics.org/plink/), [PRSice-2](https://choishingwan.github.io/PRSice/), [LD-Pred2 (grid)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [LD-Pred2 (auto)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [PRS-CSx](https://github.com/getian107/PRScsx), and [MUSSEL](https://github.com/Jin93/MUSSEL). The workflow requires genomic files in PLINK format (.bed, .bim, .fam) and GWAS summary statistics for two different populations as input to complete the analysis.
 
 
-![PGSExplorer Diagram](https://github.com/tutkuyaras/PGSExplorer/blob/main/PGSExplorer%20Workflow.png)
+![PGSExplorer Diagram](https://github.com/tutkuyaras/PGSExplorer/blob/main/PGSExplorer%20Workflow.jpg)
 ## Workflow Overview
 
 PGSExplorer includes a comprehensive pipeline that begins with rigorous quality control (QC) measures to ensure the integrity of genomic data. Following the completion of the QC module, users can optionally execute various polygenic score (PGS) calculation tools. The steps are as follows:
