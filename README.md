@@ -23,7 +23,7 @@ PGSExplorer includes a comprehensive pipeline that begins with rigorous quality 
 **10. Visualization of Heterozygosity Distributions:** Plot distribution of heterozygosity rates.  
 **11. Removal of Duplicate SNPs:** Eliminate duplicated SNPs to prevent redundancy.  
 **12. Calculating 10 Principal Components (PCA):** Perform PCA to capture population structure.  
-**13. Pruning and Thresholding (P+T):** Execute P+T method using PLINK to calculate PGS. 
+**13. Pruning and Thresholding (P+T):** Execute P+T method using PLINK to calculate PGS.   
 **14. PRSice-2:** Calculate and visualize PGS using PRSice-2.  
 **15. LD-Pred2-grid :** Apply LD-Pred2 grid model for PGS estimation.  
 **16. LD-Pred2-auto :** Apply LD-Pred2 auto model for PGS estimation.   
