@@ -26,7 +26,7 @@ PGSExplorer includes a comprehensive pipeline that begins with rigorous quality 
 **13. Pruning and Thresholding (P+T):** Execute P+T method using PLINK to calculate PGS. 
 **14. PRSice-2:** Calculate and visualize PGS using PRSice-2.  
 **15. LD-Pred2-grid :** Apply LD-Pred2 grid model for PGS estimation.  
-**16. LD-Pred2-auto :** Apply LD-Pred2 auto model for PGS estimation. 
-**17.Lassosum2 :** Apply Lassosum2 for PGS estimation. 
-**18. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.  
-**19. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.  
+**16. LD-Pred2-auto :** Apply LD-Pred2 auto model for PGS estimation.   
+**17.Lassosum2 :** Apply Lassosum2 for PGS estimation.   
+**18. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.    
+**19. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.    
