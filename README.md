@@ -38,7 +38,7 @@ In order for PGSExplorer to work correctly, you must first examine the parameter
 nextflow run main.nf --help
 ```
   
-###Parameters
+### Parameters
 ```
     Required Arguments:
     --target   prefix of plink files (.bed, .bim, .fam)
