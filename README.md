@@ -140,7 +140,7 @@ CHR BP 	   SNP     A2 A1 A1_FREQ N     OR       SE 	L95 	U95 	Z_STAT      P   IN
 1 926428 rs13302982 G A 0.469683 9978 1.02356 0.0284034 0.968133 1.08215 0.819746 0.412361 1
 1 927744 rs4040604 T G 0.337693 9978 0.994669 0.0300084 0.937854 1.05492 -0.17814 0.858613 1
 ```
-> **NOTE:**For PGSExplorer to work correctly, file formats, column order and names must be the same.  
+> **NOTE:** For PGSExplorer to work correctly, file formats, column order and names must be the same.  
 
 ## Multi Ancestry PGS Tools  
 
