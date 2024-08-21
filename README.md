@@ -97,9 +97,29 @@ nextflow run main.nf --run_prsice false --run_LDpred2grid false --run_LDpred2aut
 Default parameters were used for the integration of tools that calculate polygenic scores using summary statistics for a single population.
 PGS calculations for PLINK, PRSice-2, LD-Pred2grid, LD-Pred2-auto and Lassosum2 were defined as default true.  
 As input;  
-- _Phenotype file_ (in binary format) should be given with the --pheno_file parameter, the file format should be as in the example      
+- _Phenotype file_ (in binary format) should be given with the --pheno_file parameter, the file format should be as in the example
 
-![example](https://github.com/tutkuyaras/PGSExplorer/blob/main/images/pheno_file.png)
+
+```
+FID	IID	Phenotype
+syn1	syn1	1
+syn2	syn2	1
+syn3	syn3	1
+syn4	syn4	1
+syn5	syn5	2
+syn6	syn6	2
+syn7	syn7	1
+syn8	syn8	1
+syn9	syn9	2
+syn10	syn10	2
+syn11	syn11	1
+syn12	syn12	2
+syn13	syn13	1
+syn14	syn14	1
+syn15	syn15	2
+syn16	syn16	2
+```
+
   
 - _GWAS summary statistics_ should also be given with the --gwas_sumstat parameter, the file format should be as in the example
 
