@@ -99,4 +99,4 @@ PGS calculations for PLINK, PRSice-2, LD-Pred2grid, LD-Pred2-auto and Lassosum2 
 As input;  
 - _Phenotype file_ (in binary format) should be given with the --pheno_file parameter, the file format should be as in the ![example](https://github.com/tutkuyaras/PGSExplorer/blob/main/images/pheno_file.png)
   
-- _GWAS summary statistics_ should also be given with the --gwas_sumstat parameter, the file format should be as in the example.
+- _GWAS summary statistics_ should also be given with the --gwas_sumstat parameter, the file format should be as in the ![example] (https://github.com/tutkuyaras/PGSExplorer/blob/main/images/Gwas_sumstat.png)
