@@ -11,6 +11,6 @@ process PlotMAF {
 
     script:
     """
-    Rscript $PWD/bin/Plot_MAF.R ${maf_freq_file}
+    Rscript $PWD/bin/plot_maf.R ${maf_freq_file}
     """
 }
