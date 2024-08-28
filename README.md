@@ -141,7 +141,7 @@ CHR BP 	   SNP     A2 A1 A1_FREQ N     OR       SE 	L95 	U95 	Z_STAT      P   IN
 1 927744 rs4040604 T G 0.337693 9978 0.994669 0.0300084 0.937854 1.05492 -0.17814 0.858613 1
 ```
 
-> **NOTE:**For PGSExplorer to work correctly, file formats, column order and names must be the same.  
+> **NOTE:** For PGSExplorer to work correctly, file formats, column order and names must be the same.  
 
 
 ### PLINK
