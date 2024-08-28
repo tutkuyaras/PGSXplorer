@@ -140,7 +140,35 @@ CHR BP 	   SNP     A2 A1 A1_FREQ N     OR       SE 	L95 	U95 	Z_STAT      P   IN
 1 926428 rs13302982 G A 0.469683 9978 1.02356 0.0284034 0.968133 1.08215 0.819746 0.412361 1
 1 927744 rs4040604 T G 0.337693 9978 0.994669 0.0300084 0.937854 1.05492 -0.17814 0.858613 1
 ```
-> **NOTE:** For PGSExplorer to work correctly, file formats, column order and names must be the same.  
+
+> **NOTE:**For PGSExplorer to work correctly, file formats, column order and names must be the same.  
+
+
+### PLINK
+PLINK tool was used to calculate PGS with Pruning and Thresholding method and [this](https://choishingwan.github.io/PRS-Tutorial/plink/) tutorial was followed. 
+
+This section consists of the following modules.  
+>- ClumpSNPs  
+>- CreateValidSNPs  
+>- CreateSNPpvalue  
+>- CreateRangeList  
+>- PruneSNPs  
+>- CalculatePGS   
+
+For pruning in PLINK module, indep_window_size = 100, indep_step_size = 5, indep_threshold = 0.2 are defined by default. For example, you can change one or all of them as follows.
+
+```
+nextflow run main.nf --indep_window_size 200  
+```
+### PCA Calculation
+In order to use PRSice-2, LD-Pred2 grid, LD-Pred2 auto, LD-Pred2 auto, Lassosum2 PGS models, the .eigenvec file used as covariate is needed. This file is created with the pca module in PGSExplorer. The default pca value is 10. You can change this by using the **--pca** parameter. 
+
+### PRSice-2
+PRSice-2 is a comprehensive software tool for calculating polygenic risk scores (PRS) by integrating genome-wide association study (GWAS) summary statistics with individual genotype data. It provides flexible options for clustering and thresholding to optimize PRS structure, enabling analysis of genetic susceptibility to various traits and diseases. You can check details from [here](https://github.com/choishingwan/PRSice)
+
+### LD-Pred2Grid & LD-Pred2Auto and Lassosum2 
+LDpred2 is a Bayesian polygenic risk score (PRS) tool that includes two primary models: LDpred2-grid and LDpred2-auto. LDpred2-grid explores a grid of hyperparameters to find the best-fit PRS model, while LDpred2-auto automatically adjusts parameters based on the data, eliminating the need for predefined hyperparameters. Lassosum2 is another PRS method that applies penalized regression techniques, effectively handling linkage disequilibrium (LD) patterns to improve the prediction accuracy of polygenic scores. Yo can check details from [here](https://privefl.github.io/bigsnpr/articles/LDpred2.html) 
+
 
 ## Multi Ancestry PGS Tools  
 
