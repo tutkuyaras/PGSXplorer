@@ -194,7 +194,7 @@ nextflow run main.nf --ref_dir '$PWD/PRScsx/UKBB'
 * The format of the GWAS summary statistics should be as follows:
 
 ```
-SNP		A1	A2	  OR			P
+SNP		  A1	A2	  OR			P
 rs6681105		C	T	1.00123		0.967066
 rs11240767		T	C	0.932267	0.0857218
 rs3131972		A	G	0.995723	0.881993
