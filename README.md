@@ -82,10 +82,10 @@ nextflow run main.nf --help
     
     
 ```
-## Quality Control Part
+## Quality Control 
 
 Quality control modules consist of seven basic steps which are not optional. It consists of SNP filtering, individual filtering, filtering by MAF, HWE, relatedness, heterozygosity and elimination of duplicate SNPs.   
-The files obtained after each step are saved in the QC_outputs folder. In addition, the distribution graphs of MAF, HWE, heterozygosity and kinship relationships are also saved in the QC_graphs folder.
+The files obtained after each step are saved in the **QC_outputs** folder. In addition, the distribution graphs of MAF, HWE, heterozygosity and kinship relationships are also saved in the **QC_graphs** folder.
   
 Only for quality control module, you can run the pipeline using: 
 
@@ -166,7 +166,7 @@ In order to use PRSice-2, LD-Pred2 grid, LD-Pred2 auto, LD-Pred2 auto, Lassosum2
 ### PRSice-2
 PRSice-2 is a comprehensive software tool for calculating polygenic scores (PGS) by integrating genome-wide association study (GWAS) summary statistics with individual genotype data. It provides flexible options for clustering and thresholding to optimize PGS structure, enabling analysis of genetic susceptibility to various traits and diseases. You can check details from [here](https://github.com/choishingwan/PRSice)
 
-### LD-Pred2 Grid & LD-Pred2 Auto and Lassosum2 
+### LD-Pred2(Grid) & LD-Pred2(Auto) and Lassosum2 
 LDpred2 is a Bayesian polygenic score (PGS) tool that includes two primary models: LDpred2-grid and LDpred2-auto. LDpred2-grid explores a grid of hyperparameters to find the best-fit PGS model, while LDpred2-auto automatically adjusts parameters based on the data, eliminating the need for predefined hyperparameters. Lassosum2 is another PGS method that applies penalized regression techniques, effectively handling linkage disequilibrium (LD) patterns to improve the prediction accuracy of polygenic scores. Yo can check details from [here](https://privefl.github.io/bigsnpr/articles/LDpred2.html) 
 
 
