@@ -40,9 +40,12 @@ nextflow run main.nf --help
   
 ### Parameters
 ```
+    // Help Flag
+    --help = false
+
     Required Arguments:
     --target   prefix of plink files (.bed, .bim, .fam)
-
+    
     Optional Arguments: 
     // Quality Control Parameters
     --mind                  Threshold value to delete SNPs with missingness (Default: 0.02)
@@ -64,6 +67,7 @@ nextflow run main.nf --help
     --run_pca               Run the PCA part of  the workflow if set to true, cretaes ".eigenvec" file
     --run_LDpred2grid       Run the LDPred2 Grid Model of the workflow if set to true
     --run_LDpred2auto       Run the LDPred2 Auto Model of the workflow if set to true
+    --run_prscsx            Run the PRSCsx part of workflow if set to true
     
     // PRS-Csx parameters
     --prsice_script         Path to the PRSice R script
@@ -77,7 +81,8 @@ nextflow run main.nf --help
     --pop2                  Ancestry of 2nd Gwas sum stat, could be AFR,AMR,EAS,EUR,SAS
     --phi                   Global shrinkage parameter phi, fixing phi to 1e-2(for highly polygenic traits) or 1e-4(for less polygenic tratits)
     --meta                  Return combined SNP effect sizes across populations using  inverse variance weighted meta-analysis of population-specific posterior effect size estimates. Default is True.
-    
+    --out_name              Specify output prefix, e.g 'sample_ukbb_meta'
+
     // MUSSEL parameters
     
     
