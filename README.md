@@ -177,3 +177,33 @@ LDpred2 is a Bayesian polygenic score (PGS) tool that includes two primary model
 
 ## Multi Ancestry PGS Tools  
 
+## Multi Ancestry PGS Tools  
+In this section we integrate two tools that improve polygenic prediction power using GWAS data from multiple populations. 
+
+### PRS-Csx
+PRS-CSx is an advanced polygenic score (PGS) tool that extends [PRS-CS](https://github.com/getian107/PRScs) to accommodate trans-ancestry genetic data. By leveraging summary statistics from multiple populations, PRS-CSx improves the accuracy and generalizability of polygenic scores across diverse ancestries, making it particularly useful for studies involving multi-ethnic cohorts. You can check details from [here](https://github.com/getian107/PRScsx).
+
+* For this tool, GWAS summary statistics for 2 different populations should be used. These populations could be AFR, AMR, EAS, EUR or SAS. These populations should be determined with **--prscsx_gwas1** and **--prscsx_gwas2** parameters. Populations should be determined with **pop1** and **pop2** parameters. Lastly populations' size should be determined with **n_gwas1** and **n_gwas2** parameters.  
+
+* Also you can choose reference panel for polygenic prediction as UKBB (The UK Biobank) or 1KG (1000 Genome Poject) by following parameter: 
+
+```
+nextflow run main.nf --ref_dir '$PWD/PRScsx/UKBB'
+```
+
+* The format of the GWAS summary statistics should be as follows:
+
+```
+SNP				A1	A2	  OR			P
+rs6681105		C	T	1.00123		0.967066
+rs11240767		T	C	0.932267	0.0857218
+rs3131972		A	G	0.995723	0.881993
+rs3131969		A	G	1.00519		0.856319
+rs1048488		C	T	0.935036	0.0291286
+rs12124819		G	A	0.951011	0.113692
+rs4040617		G	A	0.961266	0.438928
+rs4970383		A	C	0.979289	0.608764
+rs28587382		A	G	1.00316		0.912211
+rs1806509		C	A	1.04064		0.170449
+```
+
