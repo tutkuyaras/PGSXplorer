@@ -166,7 +166,7 @@ In order to use PRSice-2, LD-Pred2 grid, LD-Pred2 auto, LD-Pred2 auto, Lassosum2
 ### PRSice-2
 PRSice-2 is a comprehensive software tool for calculating polygenic risk scores (PRS) by integrating genome-wide association study (GWAS) summary statistics with individual genotype data. It provides flexible options for clustering and thresholding to optimize PRS structure, enabling analysis of genetic susceptibility to various traits and diseases. You can check details from [here](https://github.com/choishingwan/PRSice)
 
-### LD-Pred2Grid & LD-Pred2Auto and Lassosum2 
+### LD-Pred2 Grid & LD-Pred2 Auto and Lassosum2 
 LDpred2 is a Bayesian polygenic risk score (PRS) tool that includes two primary models: LDpred2-grid and LDpred2-auto. LDpred2-grid explores a grid of hyperparameters to find the best-fit PRS model, while LDpred2-auto automatically adjusts parameters based on the data, eliminating the need for predefined hyperparameters. Lassosum2 is another PRS method that applies penalized regression techniques, effectively handling linkage disequilibrium (LD) patterns to improve the prediction accuracy of polygenic scores. Yo can check details from [here](https://privefl.github.io/bigsnpr/articles/LDpred2.html) 
 
 
