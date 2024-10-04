@@ -44,7 +44,10 @@ nextflow run main.nf --help
     --help = false
 
     Required Arguments:
-    --target   prefix of plink files (.bed, .bim, .fam)
+    target = "$PWD/target/"
+    target_prefix = "$PWD/target/target"  // Prefix of PLINK format target data
+    pheno_file = "$PWD/target/phenotype_file_t2.txt"  // Default phenotype file
+    gwas_sumstat = "$PWD/target/GWAS_sumstat_t1.txt"  // Default GWAS summary statistics file
     
     Optional Arguments: 
     // Quality Control Parameters
@@ -84,13 +87,19 @@ nextflow run main.nf --help
     --out_name              Specify output prefix, e.g 'sample_ukbb_meta'
 
     // MUSSEL parameters
+
+
+
+    // Output directories
+    outdir = "$PWD/outputs"
+    graphs = "$PWD/QC_graphs"
     
     
 ```
 ## Quality Control 
 
 Quality control modules consist of seven basic steps which are not optional. It consists of SNP filtering, individual filtering, filtering by MAF, HWE, relatedness, heterozygosity and elimination of duplicate SNPs.   
-The files obtained after each step are saved in the **QC_outputs** folder. In addition, the distribution graphs of MAF, HWE, heterozygosity and kinship relationships are also saved in the **QC_graphs** folder.
+The files obtained after each step are saved in the **outputs** folder. In addition, the distribution graphs of MAF, HWE, heterozygosity and kinship relationships are also saved in the **QC_graphs** folder.
   
 Only for quality control module, you can run the pipeline using: 
 
