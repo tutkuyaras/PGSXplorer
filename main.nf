@@ -22,11 +22,14 @@ if (params.help) {
     --relatedness           The same threshold with pihat value
     --pca                   Number of principal components to compute, default is 10 
     --pheno_file            Name of the phenotype file located under the target folder
-    --run_plink             Run the PLINK part of the workflow if set to true
-    --run_prsice            Run the PRSice-2 part of the workflow if set to true
+    --run_plink             Run the PLINK part of the workflow, default = true
+    --run_prsice            Run the PRSice-2 part of the workflow, default = true
     --run_pca               Run the PCA part of  the workflow if set to true, cretaes ".eigenvec" file
-    --run_LDpred2grid       Run the LDPred2 Grid Model of the workflow if set to true
-    --run_LDpred2auto       Run the LDPred2 Auto Model of the workflow if set to true
+    --run_LDpred2grid       Run the LDPred2 Grid Model of the workflow , default = true
+    --run_LDpred2auto       Run the LDPred2 Auto Model of the workflow, default = true
+    --run_Lassosum2         Run the Lassosum2 model of the workflow, default = true
+    --run_prscsx            Run the PRScsx of the workflow, default = true
+    --run_mussel            Run the MUSSEL of the workflow if set to true, default = false
     --prsice_script         Path to the PRSice R script
     --prsice_executable     Path to the PRSice executable
     --prscsxref_dir         Path to PRScsx reference panel, could be UKBB or 1KG
@@ -37,8 +40,22 @@ if (params.help) {
     --pop1                  Ancestry of 1st Gwas sum stat, could be AFR,AMR,EAS,EUR,SAS
     --pop2                  Ancestry of 2nd Gwas sum stat, could be AFR,AMR,EAS,EUR,SAS
     --phi                   Global shrinkage parameter phi, fixing phi to 1e-2(for highly polygenic traits) or 1e-4(for less polygenic tratits)
-    --meta                  Return combined SNP effect sizes across populations using inverse variance weighted meta-analysis of population-specific posterior effect size estimates. Default is True.
-   
+    --meta                  Return combined SNP effect sizes across populations using inverse variance weighted meta-analysis of population-specific posterior effect size estimates. Default is True.             
+    --pack                  Path to MUSSEL folder
+    --data                  Path to MUSSEL data
+    --LDref                 Path to LDref folder for MUSSEL module
+    --sst                   Path to summary statistic data files for MUSSEL module
+    --pop                   Used populations for MUSSEL module, could be EUR, AFR, AMR, EAS or SAS
+    --mussel_chrom          Specify the chromosomes to be analyzed by MUSSEL module , by default all chromosomes are analyzed
+    --bfile_tuning          Path to PLINK binary input file prefix for tuning of MUSSEL module
+    --pheno_tuning          Path to phenotype file (PLINK format) for tuning of MUSSEL module
+    --covar_tuning          Path to quantitative covariates (PLINK format) for tuning
+    --bfile_testing         Path to PLINK binary input file prefix for testing of MUSSEL module
+    --pheno_testing         Path to phenotype file (PLINK format) for testing of MUSSEL module
+    --covar_testing         Path to quantitative covariates (PLINK format) for testing
+    --trait_type            Type of phenotype, continuous or binary for MUSSEL module. Default: continuous
+    --NCORES                How many cores to use for MUSSEL modules
+    --plink                 path to plink2 for MUSSEL module
    """
     exit 1
 }
@@ -89,13 +106,17 @@ include { LDpred2grid } from './modules/LDpred2grid.nf'
 include { LDpred2auto } from './modules/LDpred2auto.nf'
 include { Lassosum2 } from './modules/Lassosum2.nf'
 include { PRSCSx } from './modules/PRSCSx.nf'
+include { Step1_Run_LDpred2 } from './modules/Step1_Run_LDpred2.nf'
+include { Step2_LDpred2_Tuning } from './modules/Step2_LDpred2_Tuning.nf'
+include { Step3_Run_MUSS } from './modules/Step3_Run_MUSS.nf'
+include { Step4_Combine_PRS_Models } from './modules/Step4_Combine_PRS_Models.nf'
 
 workflow {
     // Define the input channel
-    target_ch = Channel.fromPath(params.target).ifEmpty { error "Input file not found: ${params.target}" }
+    target_ch = Channel.fromPath(params.target_prefix).ifEmpty { error "Input file not found: ${params.target_prefix}" }
     fail_het_qc_ch = Channel.fromPath("fail-het-qc.txt").ifEmpty { error "Input file not found: fail-het-qc.txt" }
     gwas_sumstat_ch = Channel.fromPath("${params.target}/GWAS_sumstat_t1.txt").ifEmpty { error "Input file not found: ${params.target}/GWAS_sumstat_t1.txt" }
-    pheno_file_ch = Channel.fromPath("${params.target}/phenotype_file_t2.txt").ifEmpty { error "Input file not found: ${params.target}/phenotype_file_t3.txt" }
+    pheno_file_ch = Channel.fromPath("${params.pheno_file}").ifEmpty { error "Input file not found: ${params.pheno_file}"}
 
     // Execute QC Part
 
@@ -230,7 +251,7 @@ workflow {
         )
     }
 
-    // Conditionally execute LDpred auto process
+    // Conditionally execute Lassosum2 process
     if (params.run_Lassosum2) {
         bed_ch = remove_duplicate_snps_out.map { it[0] }
 
@@ -248,6 +269,14 @@ workflow {
         PRSCSx(
             target_9 = remove_duplicate_snps_out
         )
+    }
+
+    // Conditionally execute MUSSEL process 
+    if (params.run_mussel) {
+        ldpred2_outputs = Step1_Run_LDpred2()
+        ldpred2_tuned_outputs = Step2_LDpred2_Tuning(ldpred2_outputs)
+        muss_outputs = Step3_Run_MUSS()
+        Step4_Combine_PRS_Models()
     }
 }
 
