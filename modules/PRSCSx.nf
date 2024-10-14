@@ -8,7 +8,7 @@ process PRSCSx {
     
 
     output:
-    path "*.txt"
+    path "target_ukbb_meta*"
 
     script:
     """

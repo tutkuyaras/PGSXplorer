@@ -11,6 +11,6 @@ process QCSNPmissingness {
 
     script:
     """
-    plink --bfile $target"/target" --geno ${params.geno} --make-bed --out target_1
+    plink --bfile ${params.target_prefix} --geno ${params.geno} --make-bed --out target_1
     """
 }
