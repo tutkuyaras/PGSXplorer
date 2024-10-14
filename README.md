@@ -70,7 +70,9 @@ nextflow run main.nf --help
     --run_pca               Run the PCA part of  the workflow if set to true, cretaes ".eigenvec" file
     --run_LDpred2grid       Run the LDPred2 Grid Model of the workflow if set to true
     --run_LDpred2auto       Run the LDPred2 Auto Model of the workflow if set to true
-    --run_prscsx            Run the PRSCsx part of workflow if set to true
+    --run_Lassosum2         Run the Lassosum2 model of the workflow, default = true
+    --run_prscsx            Run the PRScsx of the workflow, default = true
+    --run_mussel            Run the MUSSEL of the workflow if set to true, default = false
     
     // PRS-Csx parameters
     --prsice_script         Path to the PRSice R script
@@ -87,8 +89,21 @@ nextflow run main.nf --help
     --out_name              Specify output prefix, e.g 'sample_ukbb_meta'
 
     // MUSSEL parameters
-
-
+    --pack                  Path to MUSSEL folder
+    --data                  Path to MUSSEL data
+    --LDref                 Path to LDref folder for MUSSEL module
+    --sst                   Path to summary statistic data files for MUSSEL module
+    --pop                   Used populations for MUSSEL module, could be EUR, AFR, AMR, EAS or SAS
+    --mussel_chrom          Specify the chromosomes to be analyzed by MUSSEL module , by default all chromosomes are analyzed
+    --bfile_tuning          Path to PLINK binary input file prefix for tuning of MUSSEL module
+    --pheno_tuning          Path to phenotype file (PLINK format) for tuning of MUSSEL module
+    --covar_tuning          Path to quantitative covariates (PLINK format) for tuning
+    --bfile_testing         Path to PLINK binary input file prefix for testing of MUSSEL module
+    --pheno_testing         Path to phenotype file (PLINK format) for testing of MUSSEL module
+    --covar_testing         Path to quantitative covariates (PLINK format) for testing
+    --trait_type            Type of phenotype, continuous or binary for MUSSEL module. Default: continuous
+    --NCORES                How many cores to use for MUSSEL modules
+    --plink                 path to plink2 for MUSSEL module
 
     // Output directories
     outdir = "$PWD/outputs"
