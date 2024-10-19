@@ -38,6 +38,7 @@ First of all, clone the repository
 
 ```
 git clone https://github.com/tutkuyaras/PGSXplorer.git
+cd /PGSXplorer
 ```
 Then, pull the docker image
 
