@@ -256,7 +256,7 @@ rs3748593	A	C	0.999168	0.985898
 ```
 ### MUSSEL
 PGSXplorer integrates the MUSSEL tool, a software designed for multi-population polygenic score (PGS) estimation. MUSSEL enables the calculation of polygenic risk scores by utilizing summary statistics from multiple populations and provides improved prediction accuracy across different genetic backgrounds. This pipeline including MUSSEL allows for robust PGS analysis, making it suitable for studies involving heterogeneous populations.
-MUSSEL is defined as default:false in PGSXplorer due to the differences in the datasets it uses. The reference genome datasets you need to use for MUSSEL are also available on the MUSSEL g[github page](https://github.com/Jin93/MUSSEL).
+MUSSEL is defined as default:false in PGSXplorer due to the differences in the datasets it uses. The reference genome datasets you need to use for MUSSEL are also available on the MUSSEL [github page](https://github.com/Jin93/MUSSEL).
 
 
 
