@@ -33,11 +33,29 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 
 
 ## Usage
+This repository hosts a Dockerized version of the PGSXplorer pipeline, making it easy to run the entire analysis environment in a consistent and repeatable manner. With Docker, users can quickly get the pipeline up and running without worrying about software dependencies or compatibility issues. To get started, make sure Docker is installed on your system, pull the Docker image, and then run the Nextflow pipeline using the Docker profile. The Docker image includes all the necessary tools and configurations for smooth execution.
+First of all, clone the repository
+
+```
+git clone https://github.com/tutkuyaras/PGSXplorer.git
+```
+Then, pull the docker image
+
+```
+docker pull tutkuyaras/pgsxplorer_image
+```
+Then, you can run basically with following command:
+
+```
+nextflow run main.nf -profile docker
+```
+
 In order for PGSXplorer to work correctly, you must first examine the parameters of the quality control steps and the polygenic score calculation tools you want to run and start the analysis with the appropriate command. You can also access the parameters given below by running the command 
+
 ```
 nextflow run main.nf --help
 ```
-  
+
 ### Parameters
 ```
     // Help Flag
@@ -207,7 +225,8 @@ In this section we integrate two tools that improve polygenic prediction power u
 ### PRS-Csx
 PRS-CSx is an advanced polygenic score (PGS) tool that extends [PRS-CS](https://github.com/getian107/PRScs) to accommodate trans-ancestry genetic data. By leveraging summary statistics from multiple populations, PRS-CSx improves the accuracy and generalizability of polygenic scores across diverse ancestries, making it particularly useful for studies involving multi-ethnic cohorts. You can check details from [here](https://github.com/getian107/PRScsx).
 
-* For this tool, GWAS summary statistics for 2 different populations should be used. These populations could be AFR, AMR, EAS, EUR or SAS. These populations should be determined with **--prscsx_gwas1** and **--prscsx_gwas2** parameters. Populations should be determined with **pop1** and **pop2** parameters. Lastly populations' size should be determined with **n_gwas1** and **n_gwas2** parameters.  
+* For this tool, GWAS summary statistics for 2 different populations should be used. These populations could be AFR, AMR, EAS, EUR or SAS. These populations should be determined with **--prscsx_gwas1** and **--prscsx_gwas2** parameters. Populations should be determined with **pop1** and **pop2** parameters. Lastly populations' size should be determined with **n_gwas1** and **n_gwas2** parameters.
+* A reference genome is needed to use this tool. You can access and download these reference genomes from PRS-Csx's [github page](https://github.com/getian107/PRScsx).
 
 * Also you can choose reference panel for polygenic prediction as UKBB (The UK Biobank) or 1KG (1000 Genome Poject) by following parameter: 
 
@@ -234,6 +253,12 @@ rs7523549	T	C	0.958352	0.139684
 rs3748592	A	G	0.980214	0.667305
 rs3748593	A	C	0.999168	0.985898 
 ```
+### MUSSEL
+PGSXplorer integrates the MUSSEL tool, a software designed for multi-population polygenic score (PGS) estimation. MUSSEL enables the calculation of polygenic risk scores by utilizing summary statistics from multiple populations and provides improved prediction accuracy across different genetic backgrounds. This pipeline including MUSSEL allows for robust PGS analysis, making it suitable for studies involving heterogeneous populations.
+MUSSEL is defined as default:false in PGSXplorer due to the differences in the datasets it uses. The reference genome datasets you need to use for MUSSEL are also available on the MUSSEL g[github page](https://github.com/Jin93/MUSSEL).
+
+
+
 
 
 
