@@ -1,6 +1,7 @@
 # PGSXplorer
 PGSXplorer is a bioinformatics workflow designed to calculate polygenic scores by processing genomic data through quality control steps. Optionally, it can utilize tools such as [PLINK](https://www.cog-genomics.org/plink/), [PRSice-2](https://choishingwan.github.io/PRSice/), [LD-Pred2 (grid)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [LD-Pred2 (auto)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [Lassosum2](https://privefl.github.io/bigsnpr/articles/LDpred2.html#lassosum2-grid-of-models), [PRS-CSx](https://github.com/getian107/PRScsx), and [MUSSEL](https://github.com/Jin93/MUSSEL). The workflow requires genomic files in PLINK format (.bed, .bim, .fam) and GWAS summary statistics for two different populations as input to complete the analysis.
 
+You can try PGSXplorer with the sample data set in the [Target](https://drive.google.com/drive/folders/1u6iAEZaDpq9U-EfrRNv2fZLEW-WXBPM2?usp=drive_link) folder and compare the output with your own data. This dataset is generated using [HAPNEST](https://github.com/intervene-EU-H2020/synthetic_data) with default parameters and is for a European population of 1000 people.
 
 ![PGSXplorer Diagram](https://github.com/tutkuyaras/PGSXplorer/blob/PGSXplorer/images/PGSExplorer%20Workflow.drawio.png)
 ## Workflow Overview
@@ -33,7 +34,8 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 
 
 ## Usage
-This repository hosts a Dockerized version of the PGSXplorer pipeline, making it easy to run the entire analysis environment in a consistent and repeatable manner. With Docker, users can quickly get the pipeline up and running without worrying about software dependencies or compatibility issues. To get started, make sure Docker is installed on your system, pull the Docker image, and then run the Nextflow pipeline using the Docker profile. The Docker image includes all the necessary tools and configurations for smooth execution.
+This repository hosts a Dockerized version of the PGSXplorer pipeline, making it easy to run the entire analysis environment in a consistent and repeatable manner. With Docker, users can quickly get the pipeline up and running without worrying about software dependencies or compatibility issues. To get started, make sure Docker is installed on your system, pull the Docker image, and then run the Nextflow pipeline using the Docker profile. The Docker image includes all the necessary tools and configurations for smooth execution.  
+
 First of all, clone the repository
 
 ```
