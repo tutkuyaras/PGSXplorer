@@ -1,5 +1,5 @@
 # PGSXplorer
-PGSXplorer is a bioinformatics workflow designed to calculate polygenic scores by processing genomic data through quality control steps, phasing and imputation. Optionally, it can utilize tools such as [PLINK](https://www.cog-genomics.org/plink/), [PRSice-2](https://choishingwan.github.io/PRSice/), [LD-Pred2 (grid)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [LD-Pred2 (auto)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [Lassosum2](https://privefl.github.io/bigsnpr/articles/LDpred2.html#lassosum2-grid-of-models), [MegaPRS] (https://dougspeed.com/megaprs/), [PRS-CSx](https://github.com/getian107/PRScsx), and [MUSSEL](https://github.com/Jin93/MUSSEL). The workflow requires genomic files in PLINK format (.bed, .bim, .fam) and GWAS summary statistics for two different populations as input to complete the analysis.
+PGSXplorer is a bioinformatics workflow designed to calculate polygenic scores by processing genomic data through quality control steps, phasing and imputation. Optionally, it can utilize tools such as [PLINK](https://www.cog-genomics.org/plink/), [PRSice-2](https://choishingwan.github.io/PRSice/), [LD-Pred2 (grid)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [LD-Pred2 (auto)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [Lassosum2](https://privefl.github.io/bigsnpr/articles/LDpred2.html#lassosum2-grid-of-models), [MegaPRS](https://dougspeed.com/megaprs/), [PRS-CSx](https://github.com/getian107/PRScsx), and [MUSSEL](https://github.com/Jin93/MUSSEL). The workflow requires genomic files in PLINK format (.bed, .bim, .fam) and GWAS summary statistics for two different populations as input to complete the analysis.
 
 You can try PGSXplorer with the sample data set in the [Target](https://drive.google.com/drive/folders/1u6iAEZaDpq9U-EfrRNv2fZLEW-WXBPM2?usp=drive_link) folder and compare the output with your own data. We also added examples of the necessary reference files for chromosomes 1 and 2 to this folder, which will allow users to experiment with sample data sets. This dataset is generated using [HAPNEST](https://github.com/intervene-EU-H2020/synthetic_data) with default parameters and is for a European population of 1000 people.
 
@@ -10,11 +10,11 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 
 ## Workflow Overview
 
-PGSXplorer includes a comprehensive pipeline that begins with rigorous quality control (QC) measures to ensure the integrity of genomic data. Following the completion of the QC module, users can optionally execute various polygenic score (PGS) calculation tools. The steps are as follows:
-**1. GWAS QC:** Applying standard GWAS QC steps for GWAS summary statistic file.  
-**2. Filtering Missing SNPs:** Identify and remove SNPs with missing genotype data.  
-**3. Filtering Missing Individuals:** Exclude individuals with excessive missing genotype data.  
-**4. Filtering by Minor Allele Frequency (MAF):** Retain SNPs above a certain MAF threshold.  
+PGSXplorer includes a comprehensive pipeline that begins with rigorous quality control (QC) measures to ensure the integrity of genomic data. Following the completion of the QC module, users can optionally execute various polygenic score (PGS) calculation tools. The steps are as follows:  
+**1. GWAS QC:** Applying standard GWAS QC steps for GWAS summary statistic file.    
+**2. Filtering Missing SNPs:** Identify and remove SNPs with missing genotype data.    
+**3. Filtering Missing Individuals:** Exclude individuals with excessive missing genotype data.    
+**4. Filtering by Minor Allele Frequency (MAF):** Retain SNPs above a certain MAF threshold.    
 **5. Visualization of MAF Distributions:** Graphical representation of MAF across SNPs.  
 **6. Filtering by Hardy-Weinberg Equilibrium (HWE):** Remove SNPs that deviate significantly from HWE.  
 **7. Visualization of HWE Distributions:** Visual display of HWE p-values for SNPs.  
@@ -23,19 +23,19 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 **10. Heterozygosity Assessment:** Evaluate heterozygosity rates to identify potential outliers.  
 **11. Visualization of Heterozygosity Distributions:** Plot distribution of heterozygosity rates.  
 **11. Removal of Duplicate SNPs:** Eliminate duplicated SNPs to prevent redundancy.  
-**12. Convert to VCF File:** Prepare genomic files for Phasing and Imputation
-**13. Phasing:** Genomic Data Phasing by using Eagle
-**14. Imputation:** Genomic Data Imputation by using Beagle
-**15. Post-Imputation QC:** Filtering VCF file by imputation score
-**16. Convert files into PLINK format:** Prepare files for rest of the pipeline
-**17. fastmixture:** Analyzing data for target ancestry inference 
+**12. Convert to VCF File:** Prepare genomic files for Phasing and Imputation  
+**13. Phasing:** Genomic Data Phasing by using Eagle  
+**14. Imputation:** Genomic Data Imputation by using Beagle  
+**15. Post-Imputation QC:** Filtering VCF file by imputation score  
+**16. Convert files into PLINK format:** Prepare files for rest of the pipeline  
+**17. fastmixture:** Analyzing data for target ancestry inference   
 **18. Calculating 10 Principal Components (PCA):** Perform PCA to capture population structure.  
 **19. Pruning and Thresholding (P+T):** Execute P+T method using PLINK to calculate PGS.   
 **20. PRSice-2:** Calculate and visualize PGS using PRSice-2.  
 **21. LD-Pred2-grid:** Apply LD-Pred2 grid model for PGS estimation.  
 **22. LD-Pred2-auto:** Apply LD-Pred2 auto model for PGS estimation.   
-**23.Lassosum2:** Apply Lassosum2 for PGS estimation.   
-**24.MegaPRS:** Apply MegaPRS for PGS estimation. 
+**23.Lassosum2:** Apply Lassosum2 for PGS estimation.     
+**24.MegaPRS:** Apply MegaPRS for PGS estimation.   
 **25. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.    
 **26. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.    
 
@@ -71,13 +71,13 @@ nextflow run main.nf --help
     --help = false
 
     Required Arguments:
-  vcf_to_plink = false
-    target = "$PWD/target/"
-    target_prefix = "$PWD/target/target"
-    target_qc_prefix = "$PWD/outputs/target_9"
-    pheno_file = "$PWD/target/phenotype_file_t2.txt"  // Default phenotype file
-    gwas_sumstat = "$PWD/target/GWAS_sumstat_t1.txt"  // Default GWAS summary statistics file
-    mega_summaries = "$PWD/outputs/quant.summaries"
+    --vcf_to_plink = false
+    --target = "$PWD/target/"
+    --target_prefix = "$PWD/target/target"
+    --target_qc_prefix = "$PWD/outputs/target_9"
+    --pheno_file = "$PWD/target/phenotype_file_t2.txt"  // Default phenotype file
+    --gwas_sumstat = "$PWD/target/GWAS_sumstat_t1.txt"  // Default GWAS summary statistics file
+    --mega_summaries = "$PWD/outputs/quant.summaries"
     
     Optional Arguments: 
     // Quality Control Parameters
@@ -94,13 +94,13 @@ nextflow run main.nf --help
     --pca                   Number of principal components to compute (Default: 10 )
     --pheno_file            Name of the phenotype file located under the target folder
 
-   // Phasing - Imputation
+    // Phasing - Imputation
     ref_phase = "$PWD/1KG_hg38_BCF/"
     genetic_map = "$PWD/genetic_map_hg38_withX.txt.gz"
     ref_imp = "$PWD/1KG_hg38_bref3/" 
     g_map = "$PWD/plink.GRCh38.map/" // Genetic map directory
 
-  // PGS Parameters
+   // PGS Parameters
     --run_plink             Run the PLINK part of the workflow if set to true
     --run_prsice            Run the PRSice-2 part of the workflow if set to true
     --run_pca               Run the PCA part of  the workflow if set to true, cretaes ".eigenvec" file
@@ -152,6 +152,22 @@ nextflow run main.nf --help
     
     
 ```
+## Running Examples
+To execute the workflow exclusively for Quality Control (QC), phasing, and imputation, use the following command when the target data is in PLINK format (e.g., .bed, .bim, .fam) with a prefix named target:  
+
+```
+nextflow run main.nf --run_plink false --run_prsice false --run_LDpred2grid false --run_LDpred2auto false --run_Lassosum2 false --run_prscsx false --run_megaprs false
+```
+If the input data is in VCF format, use the following command to convert the VCF file into PLINK format before proceeding with QC, phasing, and imputation:    
+```
+nextflow run main.nf --run_prsice false --run_LDpred2grid false --run_LDpred2auto false --run_Lassosum2 false --run_prscsx false --vcf_to_plink true --vcf ./target/target.vcf
+```
+For files with different names or to provide custom paths for reference files, use the --help flag to list all available parameters and their descriptions:  
+```
+nextflow run main.nf --help
+```
+This flexibility allows users to adjust parameters as needed, ensuring compatibility with different file names, formats, and reference paths.  
+
 ## Quality Control 
 
 Quality control modules consist of seven basic steps which are not optional. It consists of SNP filtering, individual filtering, filtering by MAF, HWE, relatedness, heterozygosity and elimination of duplicate SNPs.   
@@ -162,6 +178,27 @@ Only for quality control module, you can run the pipeline using:
 ```
 nextflow run main.nf --run_prsice false --run_LDpred2grid false --run_LDpred2auto false --run_Lassosum2 false --run_prscsx false --run_mussel false
 ```
+## Phasing 
+Involves determining the arrangement of alleles on homologous chromosomes. This process is crucial for identifying haplotypes, which are essential for downstream analyses like imputation. Phasing reconstructs the sequence of genetic variants by aligning them to a reference panel, ensuring accurate representation of genetic variation.  
+For the phasing step, the reference files were downloaded from the [1000 Genomes Project FTP site](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/). The reference data includes biallelic SNVs and INDELs, which are critical for accurate phasing.    
+The downloaded .vcf.gz files were processed as follows:  
+1. Conversion to BCF format:  
+Using bcftools view:  
+```
+bcftools view -O b -o output_file.bcf input_file.vcf.gz
+```
+2. Indexing:
+The converted BCF files were indexed using:
+
+```
+bcftools index output_file.bcf
+```
+The phased haplotypes were generated using Eagle, a state-of-the-art phasing algorithm optimized for speed and accuracy. Eagle enables efficient large-scale phasing and is particularly effective when paired with high-quality reference panels. For detailed information about Eagle v2.4.1, refer to the official documentation at [Broad Institute's Eagle page](https://alkesgroup.broadinstitute.org/Eagle/).  
+
+## Imputation 
+Predicts missing genotypes in genomic datasets by leveraging a reference panel of well-characterized genetic data. It enhances data completeness and resolution, allowing for more comprehensive genome-wide association studies (GWAS) and increasing the power to detect genetic associations. By filling in missing data points, imputation improves the accuracy of genetic analyses, especially in studies with sparse or incomplete datasets.  
+For the imputation step, the reference files were downloaded from the [1000 Genomes Project FTP site](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/). These files are converted to bref3 files. For detailed information about Beagle v5.4, refer to the official documentation at [Beagle](https://faculty.washington.edu/browning/beagle/beagle.html).  
+
 
 ## Single Ancestry PGS Tools
 Default parameters were used for the integration of tools that calculate polygenic scores using summary statistics for a single population.
@@ -211,8 +248,10 @@ CHR BP 	   SNP     A2 A1 A1_FREQ N     OR       SE 	L95 	U95 	Z_STAT      P   IN
 1 927744 rs4040604 T G 0.337693 9978 0.994669 0.0300084 0.937854 1.05492 -0.17814 0.858613 1
 ```
 
-> **NOTE:** For PGSXplorer to work correctly, file formats, column order and names must be the same.  
+> **NOTE:** For PGSXplorer to work correctly, file formats, column order and names must be the same.
 
+### PCA Calculation
+In order to use PRSice-2, LD-Pred2 grid, LD-Pred2 auto, LD-Pred2 auto, Lassosum2 PGS models, the .eigenvec file used as covariate is needed. This file is created with the pca module in PGSExplorer. The default pca value is 10. You can change this by using the **--pca** parameter.
 
 ### PLINK
 PLINK tool was used to calculate PGS with Pruning and Thresholding method and [this](https://choishingwan.github.io/PRS-Tutorial/plink/) tutorial was followed. 
@@ -230,17 +269,15 @@ For pruning in PLINK module, indep_window_size = 100, indep_step_size = 5, indep
 ```
 nextflow run main.nf --indep_window_size 200  
 ```
-### PCA Calculation
-In order to use PRSice-2, LD-Pred2 grid, LD-Pred2 auto, LD-Pred2 auto, Lassosum2 PGS models, the .eigenvec file used as covariate is needed. This file is created with the pca module in PGSExplorer. The default pca value is 10. You can change this by using the **--pca** parameter. 
-
+ 
 ### PRSice-2
 PRSice-2 is a comprehensive software tool for calculating polygenic scores (PGS) by integrating genome-wide association study (GWAS) summary statistics with individual genotype data. It provides flexible options for clustering and thresholding to optimize PGS structure, enabling analysis of genetic susceptibility to various traits and diseases. You can check details from [here](https://github.com/choishingwan/PRSice)
 
 ### LD-Pred2(Grid) & LD-Pred2(Auto) and Lassosum2 
-LDpred2 is a Bayesian polygenic score (PGS) tool that includes two primary models: LDpred2-grid and LDpred2-auto. LDpred2-grid explores a grid of hyperparameters to find the best-fit PGS model, while LDpred2-auto automatically adjusts parameters based on the data, eliminating the need for predefined hyperparameters. Lassosum2 is another PGS method that applies penalized regression techniques, effectively handling linkage disequilibrium (LD) patterns to improve the prediction accuracy of polygenic scores. You can check details from [here](https://privefl.github.io/bigsnpr/articles/LDpred2.html) 
+LDpred2 is a Bayesian polygenic score (PGS) tool that includes two primary models: LDpred2-grid and LDpred2-auto. LDpred2-grid explores a grid of hyperparameters to find the best-fit PGS model, while LDpred2-auto automatically adjusts parameters based on the data, eliminating the need for predefined hyperparameters. Lassosum2 is another PGS method that applies penalized regression techniques, effectively handling linkage disequilibrium (LD) patterns to improve the prediction accuracy of polygenic scores. You can check details from [here](https://privefl.github.io/bigsnpr/articles/LDpred2.html).  
 
-
-## Multi Ancestry PGS Tools  
+### MegaPRS
+MegaPRS is a powerful tool for calculating polygenic risk scores (PRS) by integrating GWAS summary statistics with individual-level genotype data. It uses advanced modeling approaches to account for linkage disequilibrium and population structure, improving PRS prediction accuracy across diverse ancestries. For more details, visit the [MegaPRS](https://dougspeed.com/megaprs/)
 
 ## Multi Ancestry PGS Tools  
 In this section we integrate two tools that improve polygenic prediction power using GWAS data from multiple populations. 
