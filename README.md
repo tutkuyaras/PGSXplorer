@@ -1,7 +1,7 @@
 # PGSXplorer
-PGSXplorer is a bioinformatics workflow designed to calculate polygenic scores by processing genomic data through quality control steps. Optionally, it can utilize tools such as [PLINK](https://www.cog-genomics.org/plink/), [PRSice-2](https://choishingwan.github.io/PRSice/), [LD-Pred2 (grid)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [LD-Pred2 (auto)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [Lassosum2](https://privefl.github.io/bigsnpr/articles/LDpred2.html#lassosum2-grid-of-models), [PRS-CSx](https://github.com/getian107/PRScsx), and [MUSSEL](https://github.com/Jin93/MUSSEL). The workflow requires genomic files in PLINK format (.bed, .bim, .fam) and GWAS summary statistics for two different populations as input to complete the analysis.
+PGSXplorer is a bioinformatics workflow designed to calculate polygenic scores by processing genomic data through quality control steps, phasing and imputation. Optionally, it can utilize tools such as [PLINK](https://www.cog-genomics.org/plink/), [PRSice-2](https://choishingwan.github.io/PRSice/), [LD-Pred2 (grid)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [LD-Pred2 (auto)](https://privefl.github.io/bigsnpr/articles/LDpred2.html), [Lassosum2](https://privefl.github.io/bigsnpr/articles/LDpred2.html#lassosum2-grid-of-models), [MegaPRS] (https://dougspeed.com/megaprs/), [PRS-CSx](https://github.com/getian107/PRScsx), and [MUSSEL](https://github.com/Jin93/MUSSEL). The workflow requires genomic files in PLINK format (.bed, .bim, .fam) and GWAS summary statistics for two different populations as input to complete the analysis.
 
-You can try PGSXplorer with the sample data set in the [Target](https://drive.google.com/drive/folders/1u6iAEZaDpq9U-EfrRNv2fZLEW-WXBPM2?usp=drive_link) folder and compare the output with your own data. This dataset is generated using [HAPNEST](https://github.com/intervene-EU-H2020/synthetic_data) with default parameters and is for a European population of 1000 people.
+You can try PGSXplorer with the sample data set in the [Target](https://drive.google.com/drive/folders/1u6iAEZaDpq9U-EfrRNv2fZLEW-WXBPM2?usp=drive_link) folder and compare the output with your own data. We also added examples of the necessary reference files for chromosomes 1 and 2 to this folder, which will allow users to experiment with sample data sets. This dataset is generated using [HAPNEST](https://github.com/intervene-EU-H2020/synthetic_data) with default parameters and is for a European population of 1000 people.
 
 ![PGSXplorer Diagram](https://github.com/tutkuyaras/PGSXplorer/blob/PGSXplorer/images/PGSExplorer%20Workflow.drawio.png)
 ## Workflow Overview
@@ -11,27 +11,33 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 ## Workflow Overview
 
 PGSXplorer includes a comprehensive pipeline that begins with rigorous quality control (QC) measures to ensure the integrity of genomic data. Following the completion of the QC module, users can optionally execute various polygenic score (PGS) calculation tools. The steps are as follows:
-
-**1. Filtering Missing SNPs:** Identify and remove SNPs with missing genotype data.  
-**2. Filtering Missing Individuals:** Exclude individuals with excessive missing genotype data.  
-**3. Filtering by Minor Allele Frequency (MAF):** Retain SNPs above a certain MAF threshold.  
-**4. Visualization of MAF Distributions:** Graphical representation of MAF across SNPs.  
-**5. Filtering by Hardy-Weinberg Equilibrium (HWE):** Remove SNPs that deviate significantly from HWE.  
-**6. Visualization of HWE Distributions:** Visual display of HWE p-values for SNPs.  
-**7. Relatedness Checking:** Assess genetic relatedness between individuals.  
-**8. Visualization of Identity by Descent (IBD):** Visualize IBD statistics to identify related individuals.  
-**9. Heterozygosity Assessment:** Evaluate heterozygosity rates to identify potential outliers.  
-**10. Visualization of Heterozygosity Distributions:** Plot distribution of heterozygosity rates.  
+**1. GWAS QC:** Applying standard GWAS QC steps for GWAS summary statistic file.  
+**2. Filtering Missing SNPs:** Identify and remove SNPs with missing genotype data.  
+**3. Filtering Missing Individuals:** Exclude individuals with excessive missing genotype data.  
+**4. Filtering by Minor Allele Frequency (MAF):** Retain SNPs above a certain MAF threshold.  
+**5. Visualization of MAF Distributions:** Graphical representation of MAF across SNPs.  
+**6. Filtering by Hardy-Weinberg Equilibrium (HWE):** Remove SNPs that deviate significantly from HWE.  
+**7. Visualization of HWE Distributions:** Visual display of HWE p-values for SNPs.  
+**8. Relatedness Checking:** Assess genetic relatedness between individuals.  
+**9. Visualization of Identity by Descent (IBD):** Visualize IBD statistics to identify related individuals.  
+**10. Heterozygosity Assessment:** Evaluate heterozygosity rates to identify potential outliers.  
+**11. Visualization of Heterozygosity Distributions:** Plot distribution of heterozygosity rates.  
 **11. Removal of Duplicate SNPs:** Eliminate duplicated SNPs to prevent redundancy.  
-**12. Calculating 10 Principal Components (PCA):** Perform PCA to capture population structure.  
-**13. Pruning and Thresholding (P+T):** Execute P+T method using PLINK to calculate PGS.   
-**14. PRSice-2:** Calculate and visualize PGS using PRSice-2.  
-**15. LD-Pred2-grid :** Apply LD-Pred2 grid model for PGS estimation.  
-**16. LD-Pred2-auto :** Apply LD-Pred2 auto model for PGS estimation.   
-**17.Lassosum2 :** Apply Lassosum2 for PGS estimation.   
-**18. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.    
-**19. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.    
-
+**12. Convert to VCF File:** Prepare genomic files for Phasing and Imputation
+**13. Phasing:** Genomic Data Phasing by using Eagle
+**14. Imputation:** Genomic Data Imputation by using Beagle
+**15. Post-Imputation QC:** Filtering VCF file by imputation score
+**16. Convert files into PLINK format:** Prepare files for rest of the pipeline
+**17. fastmixture:** Analyzing data for target ancestry inference 
+**18. Calculating 10 Principal Components (PCA):** Perform PCA to capture population structure.  
+**19. Pruning and Thresholding (P+T):** Execute P+T method using PLINK to calculate PGS.   
+**20. PRSice-2:** Calculate and visualize PGS using PRSice-2.  
+**21. LD-Pred2-grid:** Apply LD-Pred2 grid model for PGS estimation.  
+**22. LD-Pred2-auto:** Apply LD-Pred2 auto model for PGS estimation.   
+**23.Lassosum2:** Apply Lassosum2 for PGS estimation.   
+**24.MegaPRS:** Apply MegaPRS for PGS estimation. 
+**25. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.    
+**26. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.    
 
 ## Usage
 This repository hosts a Dockerized version of the PGSXplorer pipeline, making it easy to run the entire analysis environment in a consistent and repeatable manner. With Docker, users can quickly get the pipeline up and running without worrying about software dependencies or compatibility issues. To get started, make sure Docker is installed on your system, pull the Docker image, and then run the Nextflow pipeline using the Docker profile. The Docker image includes all the necessary tools and configurations for smooth execution.  
@@ -45,7 +51,7 @@ cd /PGSXplorer
 Then, pull the docker image
 
 ```
-docker pull tutkuyaras/pgsxplorer_image
+docker pull tutkuyaras/pgsxplorer_image:v2
 ```
 Then, you can run basically with following command:
 
@@ -65,10 +71,13 @@ nextflow run main.nf --help
     --help = false
 
     Required Arguments:
+  vcf_to_plink = false
     target = "$PWD/target/"
-    target_prefix = "$PWD/target/target"  // Prefix of PLINK format target data
+    target_prefix = "$PWD/target/target"
+    target_qc_prefix = "$PWD/outputs/target_9"
     pheno_file = "$PWD/target/phenotype_file_t2.txt"  // Default phenotype file
     gwas_sumstat = "$PWD/target/GWAS_sumstat_t1.txt"  // Default GWAS summary statistics file
+    mega_summaries = "$PWD/outputs/quant.summaries"
     
     Optional Arguments: 
     // Quality Control Parameters
@@ -84,17 +93,28 @@ nextflow run main.nf --help
     --relatedness           The same threshold with pihat value (Default: 0.1875)
     --pca                   Number of principal components to compute (Default: 10 )
     --pheno_file            Name of the phenotype file located under the target folder
-    
-    // PGS Parameters
+
+   // Phasing - Imputation
+    ref_phase = "$PWD/1KG_hg38_BCF/"
+    genetic_map = "$PWD/genetic_map_hg38_withX.txt.gz"
+    ref_imp = "$PWD/1KG_hg38_bref3/" 
+    g_map = "$PWD/plink.GRCh38.map/" // Genetic map directory
+
+  // PGS Parameters
     --run_plink             Run the PLINK part of the workflow if set to true
     --run_prsice            Run the PRSice-2 part of the workflow if set to true
     --run_pca               Run the PCA part of  the workflow if set to true, cretaes ".eigenvec" file
     --run_LDpred2grid       Run the LDPred2 Grid Model of the workflow if set to true
     --run_LDpred2auto       Run the LDPred2 Auto Model of the workflow if set to true
     --run_Lassosum2         Run the Lassosum2 model of the workflow, default = true
+    --run_megaprs           Run the MegaPRS model of the workflow, default = true
     --run_prscsx            Run the PRScsx of the workflow, default = true
     --run_mussel            Run the MUSSEL of the workflow if set to true, default = false
-    
+
+    // MegaPRS Parameters
+    ldak_executable = "$PWD/bin/ldak6.mac" //Path to the LDAK executable (e.g., ldak6.mac or ldak6.linux)
+    mega_model = "bayesr"  // Model type for MegaPRS. Options: lasso, ridge, bayesr, etc. Default = bayesr
+
     // PRS-Csx parameters
     --prsice_script         Path to the PRSice R script
     --prsice_executable     Path to the PRSice executable
