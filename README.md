@@ -39,6 +39,29 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 **25. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.    
 **26. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.    
 
+## Computational Requirements
+Our tool is designed to work seamlessly on Linux-based local machines, as well as in HPC and cloud environments. To run the workflow, users need to have Nextflow and Docker installed on their systems.
+For those who prefer not to use Docker, the required tools must be pre-installed on their system for the corresponding functions. Please refer to the table below for the list of tools needed for each step of the workflow. Please ensure that the versions of the tools installed are compatible with the workflow requirements. Detailed installation instructions for each tool can be found in their respective official documentation.  
+
+```
+|STEP         | FUNTIONALITY                       | TOOLS USED                          |  
+|-------------|------------------------------------|-------------------------------------|  
+|QC           | SNP and sample filtering           | PLINK, R, Shell                     |  
+|-------------|------------------------------------|-------------------------------------|  
+|C+T          | LD Pruning and Thresholding        | PLINK                               |  
+|-------------|------------------------------------|-------------------------------------|  
+|Phasing      | Phasing Genotype Data              | Eagle                               |  
+|-------------|------------------------------------|-------------------------------------|  
+|Imputation   | Genotype Imputation                | Beagle                              |
+|-------------|------------------------------------|-------------------------------------|  
+|PGS          | Single Ancestry                    | LDPred2, PRSice2,Lassosum 2, MegaPRS|
+|-------------|------------------------------------|-------------------------------------| 
+|PGS          | Multi Ancestry                     | MUSSEL, PRS-CSx                     |
+|-------------|------------------------------------|-------------------------------------| 
+|Visualization| Distribution and performance plots | R (custom scripts)                  |
+|-------------|------------------------------------|-------------------------------------|
+```
+
 ## Usage
 This repository hosts a Dockerized version of the PGSXplorer pipeline, making it easy to run the entire analysis environment in a consistent and repeatable manner. With Docker, users can quickly get the pipeline up and running without worrying about software dependencies or compatibility issues. To get started, make sure Docker is installed on your system, pull the Docker image, and then run the Nextflow pipeline using the Docker profile. The Docker image includes all the necessary tools and configurations for smooth execution.  
 
