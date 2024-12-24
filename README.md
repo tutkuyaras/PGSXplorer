@@ -87,6 +87,10 @@ In order for PGSXplorer to work correctly, you must first examine the parameters
 ```
 nextflow run main.nf --help
 ```
+If you want to run it in HPC environment by splitting it into nodes to speed up the job, you can run it as follows. Nextflow manages each process as a separate job that is submitted to the cluster using the sbatch command.
+```
+nextflow run main.nf -process.executor slurm
+```
 
 ### Parameters
 ```
