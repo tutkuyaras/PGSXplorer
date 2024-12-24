@@ -340,8 +340,66 @@ rs3748593	A	C	0.999168	0.985898
 PGSXplorer integrates the MUSSEL tool, a software designed for multi-population polygenic score (PGS) estimation. MUSSEL enables the calculation of polygenic risk scores by utilizing summary statistics from multiple populations and provides improved prediction accuracy across different genetic backgrounds. This pipeline including MUSSEL allows for robust PGS analysis, making it suitable for studies involving heterogeneous populations.
 MUSSEL is defined as default:false in PGSXplorer due to the differences in the datasets it uses. The reference genome datasets you need to use for MUSSEL are also available on the MUSSEL [github page](https://github.com/Jin93/MUSSEL).
 
+## Evaluation 
+The evaluation of PGS performance is intentionally left flexible, allowing users to adapt this step to their specific research questions and analysis needs.
+To help users evaluate PGS performance, we recommend the following commonly used metrics:
+**AUC (Area Under the Curve):** A standard metric for case-control datasets, AUC evaluates the classification performance of PGS in distinguishing cases from controls.
+**Pseudo R²:** This metric evaluates the agreement between phenotype and PGS in logistic regression models, which is particularly useful for binary outcomes.
+**Odds Ratio (OR):** OR measures the increase in risk associated with specific PGS thresholds, making it useful for understanding relative risk.
+**Percent Risk:** Identifies high-risk groups by categorizing individuals according to their PGS distributions and helps stratify populations for further analysis.
+**Providing Phenotype Data**
+PGSXplorer accepts phenotype files as an independent input via the --phenotype parameter. These files should contain binary (for example, 0/1) or continuous values, depending on the type of analysis currently being performed.
+Below are sample scripts to help you calculate these metrics.
 
-
+```
+install.packages("pROC")
+install.packages("tidyverse")
+library(pROC)
+library(tidyverse)
+# Read files and merge
+load_and_merge_data <- function(phenotype_file, pgs_file) {
+  phenotype <- read.table(phenotype_file, header = TRUE)
+  phenotype$Phenotype <- ifelse(phenotype$Phenotype == 1, 0, 1)
+  pgs <- read.table(pgs_file, header = TRUE)
+  merged_data <- inner_join(phenotype, pgs, by = "IID")
+  return(merged_data)
+}
+# AUC ve ROC Curve calculation
+calculate_auc <- function(merged_data) {
+  roc_obj <- roc(merged_data$Phenotype, merged_data$PRS)
+  auc_value <- auc(roc_obj)
+  print(paste("AUC:", auc_value))
+  plot(roc_obj, col = "blue", main = "ROC Curve")
+  return(auc_value)
+}
+# Odds Ratio Calculation
+calculate_odds_ratio <- function(merged_data) {
+  merged_data$z_scores <- scale(merged_data$PRS)
+  model <- glm(Phenotype ~ z_scores, data = merged_data, family = binomial)
+  or <- exp(coef(model)["z_scores"])
+  print(paste("Odds Ratio per standard deviation:", or))
+  return(or)
+}
+# Determine High Risks
+identify_high_risk_individuals <- function(merged_data) {
+  risk_threshold <- 3 * median(merged_data$PRS)
+  high_risk <- merged_data %>% filter(PRS > risk_threshold)
+  print(paste("3 kat veya daha fazla risk taşıyan birey sayısı:", nrow(high_risk)))
+  ggplot(merged_data, aes(x = PRS)) +
+    geom_histogram(binwidth = 0.01, fill = "skyblue", color = "black") +
+    geom_vline(xintercept = risk_threshold, col = "red", linetype = "dashed") +
+    annotate("text", x = risk_threshold, y = 20, label = "3x Risk Threshold", color = "red", angle = 90, vjust = -0.5) +
+    labs(title = "PGS Risk Distribution", x = "Polygenic Score (PRS)", y = "Frequency")
+  return(high_risk)
+}
+phenotype_file <- "phenotype_file.txt"
+pgs_file <- "target_PRSice2.best"
+merged_data <- load_and_merge_data(phenotype_file, pgs_file)
+auc_result <- calculate_auc(merged_data)
+odds_ratio <- calculate_odds_ratio(merged_data)
+increased_risk <- calculate_risk_percentiles(merged_data)
+high_risk_individuals <- identify_high_risk_individuals(merged_data)
+```
 
 
 
