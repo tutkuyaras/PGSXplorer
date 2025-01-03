@@ -36,6 +36,7 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 **22. LD-Pred2-auto:** Apply LD-Pred2 auto model for PGS estimation.   
 **23.Lassosum2:** Apply Lassosum2 for PGS estimation.     
 **24.MegaPRS:** Apply MegaPRS for PGS estimation.   
+**25.SBayesR-C** Aplly SBayesR-C for PGS estimation.
 **25. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.    
 **26. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.    
 
@@ -44,22 +45,22 @@ Our tool is designed to work seamlessly on Linux-based local machines, as well a
 For those who prefer not to use Docker, the required tools must be pre-installed on their system for the corresponding functions. Please refer to the table below for the list of tools needed for each step of the workflow. Please ensure that the versions of the tools installed are compatible with the workflow requirements. Detailed installation instructions for each tool can be found in their respective official documentation.  
 
 ```
-|STEP         | FUNTIONALITY                       | TOOLS USED                          |  
-|-------------|------------------------------------|-------------------------------------|  
-|QC           | SNP and sample filtering           | PLINK, R, Shell                     |  
-|-------------|------------------------------------|-------------------------------------|  
-|C+T          | LD Pruning and Thresholding        | PLINK                               |  
-|-------------|------------------------------------|-------------------------------------|  
-|Phasing      | Phasing Genotype Data              | Eagle                               |  
-|-------------|------------------------------------|-------------------------------------|  
-|Imputation   | Genotype Imputation                | Beagle                              |
-|-------------|------------------------------------|-------------------------------------|  
-|PGS          | Single Ancestry                    | LDPred2, PRSice2,Lassosum 2, MegaPRS|
-|-------------|------------------------------------|-------------------------------------| 
-|PGS          | Multi Ancestry                     | MUSSEL, PRS-CSx                     |
-|-------------|------------------------------------|-------------------------------------| 
-|Visualization| Distribution and performance plots | R (custom scripts)                  |
-|-------------|------------------------------------|-------------------------------------|
+|STEP         | FUNTIONALITY                       | TOOLS USED                                      |  
+|-------------|------------------------------------|-------------------------------------------------|  
+|QC           | SNP and sample filtering           | PLINK, R, Shell                                 |  
+|-------------|------------------------------------|-------------------------------------------------|  
+|C+T          | LD Pruning and Thresholding        | PLINK                                           |    
+|-------------|------------------------------------|-------------------------------------------------|  
+|Phasing      | Phasing Genotype Data              | Eagle                                           |  
+|-------------|------------------------------------|-------------------------------------------------|  
+|Imputation   | Genotype Imputation                | Beagle                                          |
+|-------------|------------------------------------|-------------------------------------------------|  
+|PGS          | Single Ancestry                    | LDPred2, PRSice2,Lassosum 2, SBayesR-C, MegaPRS |
+|-------------|------------------------------------|-------------------------------------------------| 
+|PGS          | Multi Ancestry                     | MUSSEL, PRS-CSx                                 |
+|-------------|------------------------------------|-------------------------------------------------| 
+|Visualization| Distribution and performance plots | R (custom scripts)                              |
+|-------------|------------------------------------|-------------------------------------------------|
 ```
 
 ## Usage
@@ -305,6 +306,9 @@ LDpred2 is a Bayesian polygenic score (PGS) tool that includes two primary model
 
 ### MegaPRS
 MegaPRS is a powerful tool for calculating polygenic risk scores (PRS) by integrating GWAS summary statistics with individual-level genotype data. It uses advanced modeling approaches to account for linkage disequilibrium and population structure, improving PRS prediction accuracy across diverse ancestries. For more details, visit the [MegaPRS](https://dougspeed.com/megaprs/)
+
+### SBayesR-C
+SBayesR-C is an optimized Bayesian method for calculating polygenic risk scores (PRS) using GWAS summary statistics. It is designed to handle high-dimensional genomic data efficiently and delivers accurate results across diverse populations. Ideal for genetic risk analysis with precision and scalability. For more details, visit the [https://github.com/zhilizheng/SBayesRC]
 
 ## Multi Ancestry PGS Tools  
 In this section we integrate two tools that improve polygenic prediction power using GWAS data from multiple populations. 
