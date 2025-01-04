@@ -92,6 +92,12 @@ If you want to run it in HPC environment by splitting it into nodes to speed up 
 ```
 nextflow run main.nf -process.executor slurm
 ```
+### SLURM usage 
+
+If you want to use PGSXplorer on different nodes, you can run your pipeline script using the SLURM resource manager provided by Nextflow.
+Nextflow manages each process as a separate job submitted to the cluster using the sbatch command.
+The pipeline must be started from a node where the sbatch command is available, usually the cluster login node.
+To enable this SLURM executor, you can set process.executor = 'slurm' in the nextflow.config file so that you can send it to the nodes. 
 
 ### Parameters
 ```
@@ -173,6 +179,13 @@ nextflow run main.nf -process.executor slurm
     --trait_type            Type of phenotype, continuous or binary for MUSSEL module. Default: continuous
     --NCORES                How many cores to use for MUSSEL modules
     --plink                 path to plink2 for MUSSEL module
+
+    //SBayesR-C Parameters
+    formatgwas = "$PWD/bin/format_gwas.R" 
+    threads = 16
+    ld_folder = '$PWD/ukbEAS_Imputed'
+    out_prefix = 'sbayesrc'
+    annot_file = '$PWD/annot_baseline2.2.txt'
 
     // Output directories
     outdir = "$PWD/outputs"
