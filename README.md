@@ -43,6 +43,12 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 ## Computational Requirements
 Our tool is designed to work seamlessly on Linux-based local machines, as well as in HPC and cloud environments. To run the workflow, users need to have Nextflow and Docker installed on their systems.
 For those who prefer not to use Docker, the required tools must be pre-installed on their system for the corresponding functions. Please refer to the table below for the list of tools needed for each step of the workflow. Please ensure that the versions of the tools installed are compatible with the workflow requirements. Detailed installation instructions for each tool can be found in their respective official documentation.  
+Computational metrics including CPU utilization, memory consumption and execution time for each module of PGSXplorer have been systematically captured using the Nextflow parameters.These metrics provide detailed insight into the computational performance of the pipeline.   
+
+```
+nextflow run main.nf -with-report pipeline_report.html and -with-timeline timeline.html
+```
+ 
 
 ```
 |STEP         | FUNTIONALITY                       | TOOLS USED                                      |  
@@ -129,10 +135,10 @@ To enable this SLURM executor, you can set process.executor = 'slurm' in the nex
     --pheno_file            Name of the phenotype file located under the target folder
 
     // Phasing - Imputation
-    ref_phase = "$PWD/1KG_hg38_BCF/"
-    genetic_map = "$PWD/genetic_map_hg38_withX.txt.gz"
-    ref_imp = "$PWD/1KG_hg38_bref3/" 
-    g_map = "$PWD/plink.GRCh38.map/" // Genetic map directory
+    --ref_phase = "$PWD/1KG_hg38_BCF/"
+    --genetic_map = "$PWD/genetic_map_hg38_withX.txt.gz"
+    --ref_imp = "$PWD/1KG_hg38_bref3/" 
+    --g_map = "$PWD/plink.GRCh38.map/" // Genetic map directory
 
    // PGS Parameters
     --run_plink             Run the PLINK part of the workflow if set to true
@@ -181,15 +187,15 @@ To enable this SLURM executor, you can set process.executor = 'slurm' in the nex
     --plink                 path to plink2 for MUSSEL module
 
     //SBayesR-C Parameters
-    formatgwas = "$PWD/bin/format_gwas.R" 
-    threads = 16
-    ld_folder = '$PWD/ukbEAS_Imputed'
-    out_prefix = 'sbayesrc'
-    annot_file = '$PWD/annot_baseline2.2.txt'
+    --formatgwas = "$PWD/bin/format_gwas.R" 
+    --threads = 16
+    --ld_folder = '$PWD/ukbEAS_Imputed'
+    --out_prefix = 'sbayesrc'
+    --annot_file = '$PWD/annot_baseline2.2.txt'
 
     // Output directories
-    outdir = "$PWD/outputs"
-    graphs = "$PWD/QC_graphs"
+    --outdir = "$PWD/outputs"
+    --graphs = "$PWD/QC_graphs"
     
     
 ```
