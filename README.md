@@ -405,7 +405,7 @@ calculate_odds_ratio <- function(merged_data) {
 identify_high_risk_individuals <- function(merged_data) {
   risk_threshold <- 3 * median(merged_data$PRS)
   high_risk <- merged_data %>% filter(PRS > risk_threshold)
-  print(paste("3 kat veya daha fazla risk taşıyan birey sayısı:", nrow(high_risk)))
+  print(paste(""Number of individuals at 3 times or more risk:", nrow(high_risk)))
   ggplot(merged_data, aes(x = PRS)) +
     geom_histogram(binwidth = 0.01, fill = "skyblue", color = "black") +
     geom_vline(xintercept = risk_threshold, col = "red", linetype = "dashed") +
