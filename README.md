@@ -43,7 +43,7 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 ## Computational Requirements
 Our tool is designed to work seamlessly on Linux-based local machines, as well as in HPC and cloud environments. To run the workflow, users need to have Nextflow and Docker installed on their systems.
 For those who prefer not to use Docker, the required tools must be pre-installed on their system for the corresponding functions. Please refer to the table below for the list of tools needed for each step of the workflow. Please ensure that the versions of the tools installed are compatible with the workflow requirements. Detailed installation instructions for each tool can be found in their respective official documentation.  
-Computational metrics including CPU utilization, memory consumption and execution time for each module of PGSXplorer have been systematically captured using the Nextflow parameters.These metrics provide detailed insight into the computational performance of the pipeline. Nextflow reports produced for sample data sets can be found [here] (https://drive.google.com/drive/folders/1u6iAEZaDpq9U-EfrRNv2fZLEW-WXBPM2?usp=drive_link).   
+Computational metrics including CPU utilization, memory consumption and execution time for each module of PGSXplorer have been systematically captured using the Nextflow parameters.These metrics provide detailed insight into the computational performance of the pipeline. Nextflow reports produced for sample data sets can be found [here](https://drive.google.com/drive/folders/1u6iAEZaDpq9U-EfrRNv2fZLEW-WXBPM2?usp=drive_link).   
 
 ```
 nextflow run main.nf -with-report pipeline_report.html and -with-timeline timeline.html
