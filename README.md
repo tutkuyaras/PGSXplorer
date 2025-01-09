@@ -328,7 +328,7 @@ LDpred2 is a Bayesian polygenic score (PGS) tool that includes two primary model
 MegaPRS is a powerful tool for calculating polygenic risk scores (PRS) by integrating GWAS summary statistics with individual-level genotype data. It uses advanced modeling approaches to account for linkage disequilibrium and population structure, improving PRS prediction accuracy across diverse ancestries. For more details, visit the [MegaPRS](https://dougspeed.com/megaprs/)
 
 ### SBayesR-C
-SBayesR-C is an optimized Bayesian method for calculating polygenic risk scores (PRS) using GWAS summary statistics. It is designed to handle high-dimensional genomic data efficiently and delivers accurate results across diverse populations. Ideal for genetic risk analysis with precision and scalability. For more details, visit the [https://github.com/zhilizheng/SBayesRC]
+SBayesR-C is an optimized Bayesian method for calculating polygenic risk scores (PRS) using GWAS summary statistics. It is designed to handle high-dimensional genomic data efficiently and delivers accurate results across diverse populations. Ideal for genetic risk analysis with precision and scalability. For more details, visit the [SBayesR-C](https://github.com/zhilizheng/SBayesRC)  
 
 ## Multi Ancestry PGS Tools  
 In this section we integrate two tools that improve polygenic prediction power using GWAS data from multiple populations. 
