@@ -36,9 +36,9 @@ PGSXplorer includes a comprehensive pipeline that begins with rigorous quality c
 **22. LD-Pred2-auto:** Apply LD-Pred2 auto model for PGS estimation.   
 **23.Lassosum2:** Apply Lassosum2 for PGS estimation.     
 **24.MegaPRS:** Apply MegaPRS for PGS estimation.   
-**25.SBayesR-C** Aplly SBayesR-C for PGS estimation.
-**25. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.    
-**26. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.    
+**25.SBayesR-C** Aplly SBayesR-C for PGS estimation.  
+**26. PRS-CSx:**  Implement PRS-CSx for multi-ancestry PGS.     
+**26. MUSSEL:** Utilize MUSSEL for multi-ancestry PGS estimation.     
 
 ## Computational Requirements
 Our tool is designed to work seamlessly on Linux-based local machines, as well as in HPC and cloud environments. To run the workflow, users need to have Nextflow and Docker installed on their systems.
