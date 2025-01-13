@@ -371,13 +371,13 @@ MUSSEL is defined as default:false in PGSXplorer due to the differences in the d
 ## Evaluation 
 The evaluation of PGS performance is intentionally left flexible, allowing users to adapt this step to their specific research questions and analysis needs.
 To help users evaluate PGS performance, we recommend the following commonly used metrics:
-**AUC (Area Under the Curve):** A standard metric for case-control datasets, AUC evaluates the classification performance of PGS in distinguishing cases from controls.
-**Pseudo R²:** This metric evaluates the agreement between phenotype and PGS in logistic regression models, which is particularly useful for binary outcomes.
-**Odds Ratio (OR):** OR measures the increase in risk associated with specific PGS thresholds, making it useful for understanding relative risk.
-**Percent Risk:** Identifies high-risk groups by categorizing individuals according to their PGS distributions and helps stratify populations for further analysis.
+**AUC (Area Under the Curve):** A standard metric for case-control datasets, AUC evaluates the classification performance of PGS in distinguishing cases from controls.  
+**Pseudo R²:** This metric evaluates the agreement between phenotype and PGS in logistic regression models, which is particularly useful for binary outcomes.  
+**Odds Ratio (OR):** OR measures the increase in risk associated with specific PGS thresholds, making it useful for understanding relative risk.  
+**Percent Risk:** Identifies high-risk groups by categorizing individuals according to their PGS distributions and helps stratify populations for further analysis.  
 **Providing Phenotype Data**
 PGSXplorer accepts phenotype files as an independent input via the --phenotype parameter. These files should contain binary (for example, 0/1) or continuous values, depending on the type of analysis currently being performed.
-Below are sample scripts to help you calculate these metrics.
+Below are sample scripts to help you calculate these metrics.  
 
 ```
 install.packages("pROC")
