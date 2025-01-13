@@ -5,10 +5,10 @@ input_file <- args[1]
 library(dplyr)
 library(data.table)
 
-# Read GWAS
+## Read file
 gwas_data <- read.table(input_file, header = TRUE, stringsAsFactors = FALSE)
 
-# Kolonları yeniden adlandırma ve seçme
+## format file
 formatted_gwas <- gwas_data %>%
   dplyr::select(SNP, A1, A2, A1_FREQ, OR, SE, P, N) %>%
   dplyr::rename(
@@ -19,9 +19,9 @@ formatted_gwas <- gwas_data %>%
     N = N
   )
 
-# Odds Ratio'yu log Odds Ratio'ya dönüştürme
+
 formatted_gwas <- formatted_gwas %>%
   dplyr::mutate(b = log(b))
 
-# Yeni formattaki dosyayı dışa aktarma
+## save file
 write.table(formatted_gwas, "formatted_gwas.ma", quote = FALSE, row.names = FALSE, sep = "\t")
