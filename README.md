@@ -141,6 +141,9 @@ To enable this SLURM executor, you can set process.executor = 'slurm' in the nex
     --ref_imp = "$PWD/1KG_hg38_bref3/" 
     --g_map = "$PWD/plink.GRCh38.map/" // Genetic map directory
 
+    // Fastmixture
+   --num_of_ancestry      Number of predicted target ancestry for fastmixture, 3 by default
+
    // PGS Parameters
     --run_plink             Run the PLINK part of the workflow if set to true
     --run_prsice            Run the PRSice-2 part of the workflow if set to true
